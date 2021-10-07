@@ -1,10 +1,9 @@
 ## ---------------- Autoscaling and Heatmap ---------------- ##
 
+# loading the data
 dataraw <- read.csv(file.choose())
 
-# Autoscale
-
-library(mdatools)
+library(mdatools) # for autoscaling
 
 # only numeric columns - excluded the label and the samples columns
 datanum <- data[,3:26]
@@ -40,10 +39,6 @@ data_heatmap <- merge(data_autoscale, labeldf, by.y= "label", all.x = TRUE)
 data_heatmap <- select(data_heatmap, last_col(), everything())
 data_heatmap<- data_heatmap[ , c(1,3, 4:27)]
 
-# loads packages, remove column with sample name, takes the mean for each group
-# (based on the month)
-
-library(dplyr)
 library(tidyr)
 library(stringr)
 
